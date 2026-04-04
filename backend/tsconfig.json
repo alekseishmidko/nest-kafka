@@ -29,6 +29,12 @@
       ],
       "@app/kafka/*": [
         "libs/kafka/src/*"
+      ],
+      "@app/database": [
+        "libs/database/src"
+      ],
+      "@app/database/*": [
+        "libs/database/src/*"
       ]
     }
   }
