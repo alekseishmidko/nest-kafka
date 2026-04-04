@@ -1,0 +1,4 @@
+### Start register
+GET http://localhost:6001/register
+Content-Type: application/json
+
