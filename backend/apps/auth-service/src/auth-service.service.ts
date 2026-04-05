@@ -1,22 +1,110 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  OnModuleInit,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { KAFKA_SERVICE, KAFKA_TOPICS } from '@app/kafka';
-
+import * as bcrypt from 'bcrypt';
 import { ClientKafka } from '@nestjs/microservices';
+import { DatabaseService } from '@app/database';
+import { eq } from 'drizzle-orm';
+import { users } from '@app/database/schema';
+
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthServiceService implements OnModuleInit {
-  constructor(@Inject(KAFKA_SERVICE) private readonly kafka: ClientKafka) {}
+  constructor(
+    @Inject(KAFKA_SERVICE) private readonly kafka: ClientKafka,
+    private readonly dbService: DatabaseService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async onModuleInit(): Promise<void> {
     await this.kafka.connect();
   }
 
-  async simulateUserRegistration() {
-    this.kafka.emit(KAFKA_TOPICS.USER_REGISTERED, {
-      email: '123@asa',
+  async register(email: string, password: string, name: string) {
+    try {
+      const exitingUser = await this.dbService.db
+        .select()
+        .from(users)
+        .where(eq(users.email, email))
+        .limit(1);
+
+      if (exitingUser.length > 0) {
+        throw new ConflictException('User already exists');
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const [user] = await this.dbService.db
+        .insert(users)
+        .values({ email, password: hashedPassword, name })
+        .returning();
+
+      this.kafka.emit(KAFKA_TOPICS.USER_REGISTERED, {
+        userId: user.id,
+        email: user.email,
+        name: user.name,
+        timestamp: new Date().toISOString(),
+      });
+
+      return { message: 'User registered successfully', userId: user.id };
+    } catch (error: any) {
+      console.error('REGISTER ERROR:', error);
+      console.error('REGISTER ERROR CAUSE:', error?.cause);
+      console.error('REGISTER ERROR STACK:', error?.stack);
+      throw error;
+    }
+  }
+  async login(email: string, password: string) {
+    const [user] = await this.dbService.db
+      .select()
+      .from(users)
+      .where(eq(users.email, email))
+      .limit(1);
+
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const token = this.jwtService.sign({ sub: user.id, email: user.email });
+
+    this.kafka.emit(KAFKA_TOPICS.USER_LOGIN, {
+      userId: user.id,
       timestamp: new Date().toISOString(),
     });
 
-    return { message: 'User registered' };
+    return {
+      access_token: token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+    };
+  }
+
+  async getProfile(userId: string) {
+    const [user] = await this.dbService.db
+      .select({
+        id: users.id,
+        email: users.email,
+        name: users.name,
+        role: users.role,
+      })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1);
+
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    return { user };
   }
 }

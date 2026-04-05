@@ -1,13 +1,38 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Request,
+  HttpStatus,
+  HttpCode,
+} from '@nestjs/common';
 import { AuthServiceService } from './auth-service.service';
+import { AuthGuard } from '@nestjs/passport';
+import { LoginDto, RegisterDto } from '@app/common/dto';
+import { ApiBody, ApiOperation } from '@nestjs/swagger';
 
-@Controller()
+@Controller('auth')
 export class AuthServiceController {
   constructor(private readonly authServiceService: AuthServiceService) {}
+  @ApiOperation({ summary: 'Register a new user' })
+  @HttpCode(HttpStatus.OK)
+  @ApiBody({ type: RegisterDto })
+  @Post('register')
+  register(@Body() dto: RegisterDto) {
+    console.log('DTO register', dto);
+    return this.authServiceService.register(dto.email, dto.password, dto.name);
+  }
 
-  @Get('register')
-  public register() {
-    console.log('124');
-    return this.authServiceService.simulateUserRegistration();
+  @Post('login')
+  login(@Body() dto: LoginDto) {
+    return this.authServiceService.login(dto.email, dto.password);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('profile')
+  getProfile(@Request() req: { user: { userId: string } }) {
+    return this.authServiceService.getProfile(req.user.userId);
   }
 }
