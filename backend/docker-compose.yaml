@@ -103,13 +103,13 @@ services:
         SERVICE: api-gateway
     container_name: eventflowapp-api-gateway
     ports:
-      - "6000:6000"
+      - "3200:3200"
     environment:
       - NODE_ENV=production
-      - PORT=6000
-      - AUTH_SERVICE_URL=http://auth-service:6001
-      - EVENTS_SERVICE_URL=http://events-service:6002
-      - TICKETS_SERVICE_URL=http://tickets-service:6003
+      - PORT=3200
+      - AUTH_SERVICE_URL=http://auth-service:3201
+      - EVENTS_SERVICE_URL=http://events-service:3202
+      - TICKETS_SERVICE_URL=http://tickets-service:3203
       - JWT_SECRET=your_jwt_secret_key
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -131,10 +131,10 @@ services:
         SERVICE: auth-service
     container_name: eventflowapp-auth-service
     ports:
-      - "6001:6001"
+      - "3201:3201"
     environment:
       - NODE_ENV=production
-      - PORT=6001
+      - PORT=3201
       - DATABASE_URL=postgres://eventflowapp:eventflow_password@postgres:5432/eventflowapp
       - KAFKA_BROKER=kafka:29092
       - JWT_SECRET=your_jwt_secret_key
@@ -153,10 +153,10 @@ services:
         SERVICE: events-service
     container_name: eventflowapp-events-service
     ports:
-      - "6003:6003"
+      - "3203:3203"
     environment:
       - NODE_ENV=production
-      - PORT=6003
+      - PORT=3203
       - DATABASE_URL=postgres://eventflowapp:eventflow_password@postgres:5432/eventflowapp
       - KAFKA_BROKER=kafka:29092
     depends_on:
@@ -172,10 +172,10 @@ services:
         SERVICE: tickets-service
     container_name: eventflowapp-tickets-service
     ports:
-      - "6004:6004"
+      - "3204:3204"
     environment:
       - NODE_ENV=production
-      - PORT=6004
+      - PORT=3204
       - DATABASE_URL=postgres://eventflowapp:eventflow_password@postgres:5432/eventflowapp
       - KAFKA_BROKER=kafka:29092
     depends_on:
@@ -191,10 +191,10 @@ services:
         SERVICE: notifications-service
     container_name: eventflowapp-notifications-service
     ports:
-      - "6006:6006"
+      - "3206:3206"
     environment:
       - NODE_ENV=production
-      - PORT=6006
+      - PORT=3206
       - DATABASE_URL=postgres://eventflowapp:eventflow_password@postgres:5432/eventflowapp
       - KAFKA_BROKER=kafka:29092
       - SMTP_HOST=mailhog
