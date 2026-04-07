@@ -21,12 +21,12 @@ export class AuthServiceController {
   @ApiBody({ type: RegisterDto })
   @Post('register')
   register(@Body() dto: RegisterDto) {
-    console.log('DTO register', dto);
     return this.authServiceService.register(dto.email, dto.password, dto.name);
   }
 
   @Post('login')
   login(@Body() dto: LoginDto) {
+    console.log('AUTH LOGIN')
     return this.authServiceService.login(dto.email, dto.password);
   }
 

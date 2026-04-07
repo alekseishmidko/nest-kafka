@@ -54,39 +54,42 @@ export class AuthServiceService implements OnModuleInit {
 
       return { message: 'User registered successfully', userId: user.id };
     } catch (error: any) {
-      console.error('REGISTER ERROR:', error);
-      console.error('REGISTER ERROR CAUSE:', error?.cause);
-      console.error('REGISTER ERROR STACK:', error?.stack);
       throw error;
     }
   }
   async login(email: string, password: string) {
-    const [user] = await this.dbService.db
-      .select()
-      .from(users)
-      .where(eq(users.email, email))
-      .limit(1);
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      throw new UnauthorizedException('Invalid credentials');
+    try {
+      const [user] = await this.dbService.db
+        .select()
+        .from(users)
+        .where(eq(users.email, email))
+        .limit(1);
+
+      if (!user || !(await bcrypt.compare(password, user.password))) {
+        throw new UnauthorizedException('Invalid credentials');
+      }
+
+      const token = this.jwtService.sign({ sub: user.id, email: user.email });
+
+      this.kafka.emit(KAFKA_TOPICS.USER_LOGIN, {
+        userId: user.id,
+        timestamp: new Date().toISOString(),
+      });
+
+      return {
+        access_token: token,
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        },
+      };
+    } catch (error) {
+      console.log(error, "ERROR LOGIN");
+      throw error;
     }
-
-    const token = this.jwtService.sign({ sub: user.id, email: user.email });
-
-    this.kafka.emit(KAFKA_TOPICS.USER_LOGIN, {
-      userId: user.id,
-      timestamp: new Date().toISOString(),
-    });
-
-    return {
-      access_token: token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-      },
-    };
   }
 
   async getProfile(userId: string) {

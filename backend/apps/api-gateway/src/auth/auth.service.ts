@@ -7,6 +7,7 @@ import { AuthResponse, SERVICES_PORTS, UserProfileResponse } from '@app/common';
 export class AuthService {
   private readonly authServiceUrl =
     process.env.AUTH_SERVICE_URL ??
+    // `http://localhost:${SERVICES_PORTS.AUTH_SERVICE}`;
     `http://127.0.0.1:${SERVICES_PORTS.AUTH_SERVICE}`;
 
   constructor(private readonly httpService: HttpService) {}
@@ -18,7 +19,7 @@ export class AuthService {
   }): Promise<UserProfileResponse> {
     try {
       const url = `${this.authServiceUrl}/auth/register`;
-      console.log('Calling auth service:', url);
+
       const response = await firstValueFrom(
         this.httpService.post<UserProfileResponse>(url, data),
       );
@@ -37,7 +38,7 @@ export class AuthService {
     try {
       const response = await firstValueFrom(
         this.httpService.post<AuthResponse>(
-          `${this.authServiceUrl}/login`,
+          `${this.authServiceUrl}/auth/login`,
           data,
         ),
       );
