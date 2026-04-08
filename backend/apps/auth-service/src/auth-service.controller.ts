@@ -26,7 +26,6 @@ export class AuthServiceController {
 
   @Post('login')
   login(@Body() dto: LoginDto) {
-    console.log('AUTH LOGIN')
     return this.authServiceService.login(dto.email, dto.password);
   }
 
@@ -34,5 +33,14 @@ export class AuthServiceController {
   @Get('profile')
   getProfile(@Request() req: { user: { userId: string } }) {
     return this.authServiceService.getProfile(req.user.userId);
+  }
+
+  @Get('health')
+  health() {
+    return {
+      ok: true,
+      service: 'auth-service',
+      timestamp: new Date().toISOString(),
+    };
   }
 }
