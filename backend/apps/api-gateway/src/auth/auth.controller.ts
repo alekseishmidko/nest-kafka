@@ -29,4 +29,9 @@ export class AuthController {
   getProfile(@Headers('authorization') authorization: string) {
     return this.authService.getProfile(authorization);
   }
+
+  @Get('health')
+  health() {
+    return this.authService.healths();
+  }
 }

@@ -23,7 +23,13 @@ export class AuthServiceService implements OnModuleInit {
   ) {}
 
   async onModuleInit(): Promise<void> {
-    await this.kafka.connect();
+    try {
+      await this.kafka.connect();
+      console.log('[AuthService] Kafka connected');
+    } catch (error) {
+      console.error('[AuthService] Kafka connection failed', error);
+      throw error;
+    }
   }
 
   async register(email: string, password: string, name: string) {
@@ -58,7 +64,7 @@ export class AuthServiceService implements OnModuleInit {
     }
   }
   async login(email: string, password: string) {
-
+    console.log('login', email, password);
     try {
       const [user] = await this.dbService.db
         .select()
@@ -87,7 +93,7 @@ export class AuthServiceService implements OnModuleInit {
         },
       };
     } catch (error) {
-      console.log(error, "ERROR LOGIN");
+      console.log(error, 'ERROR LOGIN');
       throw error;
     }
   }

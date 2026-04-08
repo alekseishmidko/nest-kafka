@@ -1,28 +1,47 @@
-import { Injectable, OnModuleDestroy } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { sql } from 'drizzle-orm';
 import { Pool } from 'pg';
+
 import * as schema from './schema';
 
 @Injectable()
-export class DatabaseService implements OnModuleDestroy {
-  private pool: Pool;
-  public db: NodePgDatabase<typeof schema>;
+export class DatabaseService implements OnModuleInit, OnModuleDestroy {
+  private readonly logger = new Logger(DatabaseService.name);
 
-  constructor() {
+  private readonly pool: Pool;
+  public readonly db: NodePgDatabase<typeof schema>;
+
+  constructor(private readonly configService: ConfigService) {
     const connectionString =
-      process.env.DATABASE_URL ??
-      'postgresql://eventflowapp:eventflow_password@localhost:5436/eventflowapp?schema=public';
-    if (!connectionString) {
-      throw new Error('DATABASE_URL is not defined');
-    }
-    this.pool = new Pool({ connectionString });
-    this.db = drizzle(this.pool, { schema });
+      this.configService.getOrThrow<string>('DATABASE_URL');
 
-    console.log('Database connected');
+    this.pool = new Pool({
+      connectionString,
+    });
+
+    this.db = drizzle(this.pool, { schema });
   }
 
-  async onModuleDestroy() {
+  async onModuleInit(): Promise<void> {
+    try {
+      await this.pool.query('SELECT 1');
+      this.logger.log('[Database] PostgreSQL connected successfully');
+    } catch (error) {
+      this.logger.error('[Database] PostgreSQL connection failed', error);
+      throw error;
+    }
+  }
+
+  async onModuleDestroy(): Promise<void> {
     await this.pool.end();
+    this.logger.log('[Database] PostgreSQL connection closed');
   }
 
   get schema() {

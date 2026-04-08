@@ -2,10 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AuthServiceModule } from './auth-service.module';
 import { SERVICES_PORTS } from '@app/common';
 import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthServiceModule);
-  console.log(`http://localhost:${SERVICES_PORTS.AUTH_SERVICE}`);
+  const config = app.get(ConfigService);
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -13,6 +15,10 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  await app.listen(SERVICES_PORTS.AUTH_SERVICE);
+  const host = config.getOrThrow<string>('HOST');
+  const port = config.getOrThrow<number>('AUTH_PORT');
+  await app.listen(port, host, () =>
+    console.log(`Listening on ${host}:${port}`),
+  );
 }
 bootstrap();
