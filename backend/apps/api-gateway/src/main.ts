@@ -30,7 +30,7 @@ async function bootstrap() {
   const host = config.getOrThrow<string>('HOST');
   const port = config.getOrThrow<string>('GATEWAY_PORT');
   await app.listen(port, host, () =>
-    console.log(`Listening on ${host}:${port}`),
+    console.log(`Listening on http://${host}:${port}/docs`),
   );
 }
 bootstrap();
