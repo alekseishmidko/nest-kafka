@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6bab0c5-f299-42a9-b3a6-40feea1068bc" name="Changes" comment="fix фикс ендпоинтов">
-      <change beforePath="$PROJECT_DIR$/backend/apps/api-gateway/src/api-gateway.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/api-gateway/src/api-gateway.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/api-gateway/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/api-gateway/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/auth-service/src/auth-service.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/auth-service/src/auth-service.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/apps/auth-service/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apps/auth-service/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pnpm-lock.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="d6bab0c5-f299-42a9-b3a6-40feea1068bc" name="Changes" comment="feat  events service" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +26,16 @@
     &quot;assignee&quot;: &quot;alekseishmidko&quot;
   }
 }</component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="feat  events service" />
+        <option name="rewordedMessage" value="feat  events service" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="952c1d53e18bd2a5abc5d2023028e1c8dbd9a59c" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/alekseishmidko/nest-kafka.git&quot;,
@@ -48,48 +51,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.backend/docker-compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;npm.start(api-gateway).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start(auth-service).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:dev(api-gateway).executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:dev(auth-service).executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.backend/docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "development",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "npm.start(api-gateway).executor": "Run",
+    "npm.start(auth-service).executor": "Run",
+    "npm.start:dev(api-gateway).executor": "Run",
+    "npm.start:dev(auth-service).executor": "Run",
+    "npm.start:dev(events-service).executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backend/apps/api-gateway/src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start(api-gateway)">
+  <component name="RunManager" selected="npm.start:dev(events-service)">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="backend/docker-compose.yaml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="postgres" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="backend/docker-compose.yaml" />
-        </settings>
       </deployment>
       <method v="2" />
     </configuration>
@@ -133,13 +125,23 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start:dev(events-service)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev(events-service)" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start(auth-service)" />
-        <item itemvalue="npm.start(api-gateway)" />
+        <item itemvalue="npm.start:dev(events-service)" />
         <item itemvalue="npm.start:dev(api-gateway)" />
         <item itemvalue="npm.start:dev(auth-service)" />
-        <item itemvalue="Docker.backend/docker-compose.yaml.postgres: Compose Deployment" />
+        <item itemvalue="npm.start(auth-service)" />
+        <item itemvalue="npm.start(api-gateway)" />
       </list>
     </recent_temporary>
   </component>
@@ -161,6 +163,7 @@
       <workItem from="1775322136381" duration="15477000" />
       <workItem from="1775578383815" duration="3060000" />
       <workItem from="1775622029496" duration="952000" />
+      <workItem from="1775665611608" duration="5944000" />
     </task>
     <task id="LOCAL-00001" summary="fix фикс ендпоинтов">
       <option name="closed" value="true" />
@@ -170,7 +173,39 @@
       <option name="project" value="LOCAL" />
       <updated>1775582910907</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat  events service">
+      <option name="closed" value="true" />
+      <created>1775670825373</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775670825373</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat  events service">
+      <option name="closed" value="true" />
+      <created>1775670856044</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775670856044</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat  events service">
+      <option name="closed" value="true" />
+      <created>1775670898682</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775670898682</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat  events service">
+      <option name="closed" value="true" />
+      <created>1775670920728</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775670920728</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +216,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -192,7 +239,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="подключил сваггер, исправил ошибки при прозвоне ручек auth" />
     <MESSAGE value="fix фикс ендпоинтов" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix фикс ендпоинтов" />
+    <MESSAGE value="feat  events service" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat  events service" />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="XDebuggerManager">
