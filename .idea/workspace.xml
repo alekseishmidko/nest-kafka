@@ -51,34 +51,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.backend/docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "development",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "npm.start(api-gateway).executor": "Run",
-    "npm.start(auth-service).executor": "Run",
-    "npm.start:dev(api-gateway).executor": "Run",
-    "npm.start:dev(auth-service).executor": "Run",
-    "npm.start:dev(events-service).executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.backend/docker-compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;npm.start(api-gateway).executor&quot;: &quot;Run&quot;,
+    &quot;npm.start(auth-service).executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:dev(api-gateway).executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:dev(auth-service).executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:dev(events-service).executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/alexeishmidko/webstorm/nest-kafka/backend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backend/apps/api-gateway/src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start:dev(events-service)">
+  <component name="RunManager" selected="npm.start:dev(api-gateway)">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -137,9 +137,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start:dev(events-service)" />
         <item itemvalue="npm.start:dev(api-gateway)" />
         <item itemvalue="npm.start:dev(auth-service)" />
+        <item itemvalue="npm.start:dev(events-service)" />
         <item itemvalue="npm.start(auth-service)" />
         <item itemvalue="npm.start(api-gateway)" />
       </list>
@@ -164,6 +164,7 @@
       <workItem from="1775578383815" duration="3060000" />
       <workItem from="1775622029496" duration="952000" />
       <workItem from="1775665611608" duration="5944000" />
+      <workItem from="1775755395831" duration="2216000" />
     </task>
     <task id="LOCAL-00001" summary="fix фикс ендпоинтов">
       <option name="closed" value="true" />
@@ -205,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775670920728</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat  events service">
+      <option name="closed" value="true" />
+      <created>1775757006965</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775757006965</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -6,6 +6,7 @@ import { EventsModule } from './events/events.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from '../../auth-service/src/jwt/jwt.strategy';
+import { TicketsModule } from './tickets/tickets.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { JwtStrategy } from '../../auth-service/src/jwt/jwt.strategy';
     }),
     AuthModule,
     EventsModule,
+    TicketsModule,
   ],
   controllers: [],
   providers: [JwtStrategy],
